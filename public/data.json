@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Producto01",
+        "price": 10,
+        "img": "https://picsum.photos/200",
+        "quanty": 1
+    },
+    {
+        "id": 2,
+        "name": "Producto02",
+        "price": 15,
+        "img": "https://picsum.photos/200",
+        "quanty": 1
+    },
+    {
+        "id": 3,
+        "name": "Producto03",
+        "price": 35,
+        "img": "https://picsum.photos/200",
+        "quanty": 1
+    }
+]
