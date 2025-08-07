@@ -5,12 +5,10 @@ import Cart from "../Components/pages/Cart/Cart";
 const Rutas = () => {
   return (
     <BrowserRouter>
-      <section>
           <Routes>
               <Route path= "/" element={<Home/>} />
               <Route path="/carrito" element={<Cart/>}/>
           </Routes>
-      </section>
     </BrowserRouter>
   )
 }
