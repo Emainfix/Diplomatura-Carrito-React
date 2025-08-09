@@ -6,8 +6,8 @@ const Total = () => {
   const total = carrito.reduce((acc, el) => acc + el.price * el.quanty, 0);
 
   return (
-    <div>
-        <h3>Total a pagar: US$ {total}</h3>
+    <div className="container">
+        <h3 className="my-5">Total a pagar:<strong> US$ {total}.00</strong></h3>
     </div>
   )
 }
