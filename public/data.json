@@ -1,23 +1,37 @@
 [
     {
         "id": 1,
-        "name": "Producto01",
-        "price": 10,
-        "img": "https://picsum.photos/200",
+        "name": "S10 Plus",
+        "price": 200,
+        "img": "https://yavicrlti1ts8lkf.public.blob.vercel-storage.com/img/destacados/01.png",
         "quanty": 1
     },
     {
         "id": 2,
-        "name": "Producto02",
-        "price": 15,
-        "img": "https://picsum.photos/200",
+        "name": "ROPVACNIC",
+        "price": 150,
+        "img": "https://yavicrlti1ts8lkf.public.blob.vercel-storage.com/img/destacados/02.png",
         "quanty": 1
     },
     {
         "id": 3,
-        "name": "Producto03",
-        "price": 35,
-        "img": "https://picsum.photos/200",
+        "name": "A12 Pro",
+        "price": 180,
+        "img": "https://yavicrlti1ts8lkf.public.blob.vercel-storage.com/img/destacados/03.png",
+        "quanty": 1
+    },
+    {
+        "id": 4,
+        "name": "BL-20 Lidar",
+        "price": 350,
+        "img": "https://yavicrlti1ts8lkf.public.blob.vercel-storage.com/img/destacados/04.png",
+        "quanty": 1
+    },
+    {
+        "id": 5,
+        "name": "AI Ultra",
+        "price": 182,
+        "img": "https://yavicrlti1ts8lkf.public.blob.vercel-storage.com/img/destacados/05.png",
         "quanty": 1
     }
 ]
