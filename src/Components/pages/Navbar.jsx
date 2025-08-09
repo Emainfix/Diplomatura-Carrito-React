@@ -30,7 +30,7 @@ const Navbar = () => {
                   <Link className="nav-link nav-a active" to="/">Home</Link>
                 </li>
                 <li className="nav-item mx-2">
-                  <Link className="nav-link nav-a active">Registrarse</Link>
+                  <Link className="nav-link nav-a active" to="/registro">Registrarse</Link>
                 </li>
                 <li className="nav-item ms-2">
                   <Link className={`nav-link nav-a active ${totalItems > 0 ? 'blue-link' : ''}`} to="/Carrito">Carrito</Link>
