@@ -33,6 +33,7 @@ const useCarritoStore = create((set, get) => ({
         set({ carrito: newCarrito});
     },
 
+    getTotalItems: () => get().carrito.length,
     setCarrito: (nuevoCarrito) => set({ carrito: nuevoCarrito})
 }))
 
