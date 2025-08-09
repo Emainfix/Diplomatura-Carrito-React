@@ -13,6 +13,10 @@ html, body{
     --color-gray: #f0f0f0;
 }
 
+.blue-link {
+  color: var(--color-primary) !important;
+}
+
 body{
   margin: 0;
   padding: 0;
