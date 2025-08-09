@@ -5,8 +5,8 @@ const ItemCounter = ({producto}) => {
     const restarProducto = useCarritoStore((state) => state.restarProducto);
 
   return (
-    <div>
-        <div className="row">
+    <div className="m-auto">
+        <div className="d-flex align-items-center gap-2">
             <p onClick={()=> restarProducto(producto)} className="m-2 btn btn-secondary">
             -
         </p>
