@@ -24,18 +24,18 @@ const Products = () => {
       //Finalmente le decimos que esos datos del JSON los meta en el array de la variable productos. Esto se hace usando la función setProductos.
     }, [])
 
-
-
     return productos.map((producto) => {//Con map recorro cada objeto dentro del array de mi variable productos(JSON)
       return (
-    <div key={producto.id} className="card m-2" style={{width: '18rem'}}>{/* El key le dice a react que cada identifdicador del objeto producto va a ser id.*/}
-        <img className="card-img-top" src={producto.img} alt="Card image cap"/>{/*Llamamos al objeto que toma map, en este caso producto y su propiedad img*/}
-        <div className="card-body">
-            <h5 className="card-title">{producto.name}</h5>
-            <p className="card-text">{producto.price}</p>
-            <button onClick={() => buyProducts(producto)} className="btn btn-primary">Agregar al carrito</button>
+        <div className="col-12 col-lg-4 my-4 d-flex justify-content-center">
+          <div key={producto.id} className="card m-2 text-center" style={{width: '18rem'}}>{/* El key le dice a react que cada //identifdicador del objeto producto va a ser id.*/}
+            <img className="card-img-top" src={producto.img} alt="Card image cap"/>{/*Llamamos al objeto que toma map, en este caso producto y su propiedad img*/}
+            <div className="card-body">
+                <h5 className="card-title">{producto.name}</h5>
+                <p className="card-text">US$ {producto.price}.00</p>
+                <button onClick={() => buyProducts(producto)} className="btn btn-primary">Agregar al carrito</button>
+            </div>
+          </div>
         </div>
-    </div>
   )
     })
   
