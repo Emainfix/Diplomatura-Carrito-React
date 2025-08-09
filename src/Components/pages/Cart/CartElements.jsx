@@ -6,7 +6,7 @@ const CartElements = () => {
     const eliminarProducto = useCarritoStore((state) => state.eliminarProducto);
 
     return carrito.map((producto) => (
-            <div className="container">
+            <div key={producto.id} className="container">
                 <div className="container-fluid">
                     <div className="row d-flex justify-content-center align-items-center gap-3 border p-2">
                         <div className="col-12 col-md-4 d-flex justify-content-center justify-content-md-start align-items-center"><img style={{ width: "60px", height: "60px", objectFit: "cover" }} src={producto.img} alt="" />
@@ -14,7 +14,7 @@ const CartElements = () => {
                         </div>
                         <div className="col-12 col-md-3 d-flex align-items-center justify-content-center"><ItemCounter producto={producto}/></div>
                         <div className="col-12 col-md-4 d-flex align-items-center justify-content-center justify-content-md-end"><h4 className="m-md-auto m-2  text-success">US$ {producto.price  * producto.quanty}.00</h4>
-                        <button onClick={() => eliminarProducto(producto.id)} className="btn btn-primary">Eliminar</button>
+                        <button onClick={() => eliminarProducto(producto.id)} className="btn-eliminar btn-primary">Eliminar</button>
                         </div>
                     </div>
                 </div>
