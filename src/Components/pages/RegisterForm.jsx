@@ -3,7 +3,7 @@ import {useForm} from 'react-hook-form'
 
 const RegisterForm = () => {
 
-    const {register, handleSubmit} = useForm()
+    const {register, handleSubmit, formState: {errors}, watch} = useForm();
 
     const enviado = handleSubmit((data) => {
         console.log(data)
@@ -13,44 +13,105 @@ const RegisterForm = () => {
         <div>
             <Navbar/>
             <div className="container">
-                <section className="formulario">
-                    <div className="row d-flex justify-content-center">
-                        <div className="col-12 col-lg-6 container-form">
-                            <form onSubmit={enviado} className="contacto" action="">
-                                <label className="m-3" htmlFor="nombre">Nombre</label>
-                                <input className="campo" type="text" {...register("nombre")} />
-                            
-                                <label className="m-3" htmlFor="correo">Correo</label>
-                                <input type="email" {...register("correo")} />
-                            
-                                <label className="m-3" htmlFor="contraseña">Contraseña</label>
-                                <input type="password" {...register("contraseña")} />
-                            
-                                <label className="m-3" htmlFor="confirmarContraseña">Confirmar Contraseña</label>
-                                <input type="password" {...register("confirmarContraseña")} />
-                            
-                                <label htmlFor="fechaNacimiento">Fecha de Nacimiento</label>
-                                <input type="date" {...register("fechaNacimiento")} />
-                                
-                                <label htmlFor="pais">País</label>
-                                <select {...register("pais")} name="" id="">
-                                    <option value="ar">Argentina</option>
-                                    <option value="ch">Chile</option>
-                                    <option value="mx">México</option>
-                                </select>
-                            
-                                <div className="d-flex justify-content-center align-items-center">
-                                    <label htmlFor="terminos">Acepto los términos y condiciones</label>
-                                    <input type="checkbox" {...register("terminos")} />
-                                </div>
-                                <button className="btn-enviar">
-                                    Enviar
-                                </button>
-                            </form>
-                </div>
-                </div>
-                </section>
+    <section className="formulario">
+        <div className="row d-flex justify-content-center">
+            <div className="col-12 col-lg-6 container-form">
+                <form onSubmit={enviado} className="contacto" action="">
+                    
+                    {/* Campo Nombre */}
+                    <div className="mb-3">
+                        <label htmlFor="nombre" className="form-label">Nombre</label>
+                        <input className="campo form-control" type="text" {...register("nombre", {
+                            required: { value: true, message: "Debes colocar tu nombre" },
+                            minLength: { value: 2, message: "El nombre debe tener un mínimo de 2 caracteres" },
+                            maxLength: { value: 40, message: "El nombre debe tener un máximo de 40 caracteres" }
+                        })} />
+                        {errors.nombre && <span className="text-danger">{errors.nombre.message}</span>}
+                    </div>
+
+                    {/* Campo Correo */}
+                    <div className="mb-3">
+                        <label htmlFor="correo" className="form-label">Correo</label>
+                        <input className="form-control" type="email" {...register("correo", {
+                            required: { value: true, message: "Debes colocar tu dirección de correo" },
+                            pattern: { value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/, message: "La dirección de correo no es válida" }
+                        })} />
+                        {errors.correo && <span className="text-danger">{errors.correo.message}</span>}
+                    </div>
+
+                    {/* Campo Contraseña */}
+                    <div className="mb-3">
+                        <label htmlFor="contraseña" className="form-label">Contraseña</label>
+                        <input className="form-control" type="password" {...register("contraseña", {
+                            required: { value: true, message: "Introduzca una contraseña" },
+                            minLength: { value: 4, message: "La contraseña debe tener un mínimo de 4 caracteres" },
+                            maxLength: { value: 20, message: "La contraseña debe tener un máximo de 20 caracteres" }
+                        })} />
+                        {errors.contraseña && <span className="text-danger">{errors.contraseña.message}</span>}
+                    </div>
+
+                    {/* Campo Confirmar Contraseña */}
+                    <div className="mb-3">
+                        <label htmlFor="confirmarContraseña" className="form-label">Confirmar Contraseña</label>
+                        <input className="form-control" type="password" {...register("confirmarContraseña", {
+                            required: { value: true, message: "Requerido" },
+                            validate: value => value === watch("contraseña") || "Las contraseñas deben coincidir"
+                        })} />
+                        {errors.confirmarContraseña && <span className="text-danger">{errors.confirmarContraseña.message}</span>}
+                    </div>
+
+                    {/* Campo Fecha de Nacimiento */}
+                    <div className="mb-3">
+                        <label htmlFor="fechaNacimiento" className="form-label">Fecha de Nacimiento</label>
+                        <input className="form-control" type="date" {...register("fechaNacimiento", {
+                            required: { value: true, message: "Ingrese su fecha de nacimiento" },
+                            validate: (value) => {
+                                const fechaNacimiento = new Date(value);
+                                const fechaActual = new Date();
+                                const edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+                                return edad >= 18 || "El usuario debe ser mayor de edad";
+                            }
+                        })} />
+                        {errors.fechaNacimiento && <span className="text-danger">{errors.fechaNacimiento.message}</span>}
+                    </div>
+                    
+                    {/* Campo País */}
+                    <div className="mb-3">
+                        <label htmlFor="pais" className="form-label">País</label>
+                        <select className="form-select" {...register("pais")} name="" id="">
+                            <option value="ar">Argentina</option>
+                            <option value="ch">Chile</option>
+                            <option value="mx">México</option>
+                        </select>
+                    </div>
+                
+                    {/* Campo Términos y Condiciones */}
+<div className="mb-3">
+    <div className="form-check">
+        <input 
+            className="form-check-input" 
+            type="checkbox" 
+            id="terminos" // El id es crucial para asociarlo al label
+            {...register("terminos", {
+                required: { value: true, message: "Debes aceptar los términos y condiciones" }
+            })} 
+        />
+        <label className="form-check-label" htmlFor="terminos">
+            Acepto los términos y condiciones
+        </label>
+    </div>
+    {/* El mensaje de error debe ir fuera del div.form-check */}
+    {errors.terminos && <span className="d-block text-danger">{errors.terminos.message}</span>}
+</div>
+                    
+                    <button className="btn-enviar btn btn-primary w-100" type="submit">
+                        Enviar
+                    </button>
+                </form>
             </div>
+        </div>
+    </section>
+</div>
         </div>
     )
 }
