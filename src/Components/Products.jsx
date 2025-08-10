@@ -7,9 +7,14 @@ const Products = () => {
     // products es la variable inicial y su valor lo defino con useState(). En este caso un array vacío.
     //La función setProducts me permite modificar el estado de mi variable product
 
+    const [cargando, setCargando] = useState(false);
+    //Configuro un useState para verificar la carga
+
     const buyProducts = useCarritoStore((state) => state.buyProducts);
 
     useEffect(() => {
+      setCargando(true)//Decimos que comienza la carga de los datos
+
       //Es un Hook de efecto secundario.
       //Un efecto secundario es cuando una función afecta "el mundo exterior", fuera de su propia lógica.
       //Este hook Sirve para ejecutar código después de que el componente se renderiza.
@@ -22,7 +27,19 @@ const Products = () => {
       //.json() convierte el cuerpo de esa respuesta a JSON
       .then((datos) => setProductos(datos))
       //Finalmente le decimos que esos datos del JSON los meta en el array de la variable productos. Esto se hace usando la función setProductos.
+      .finally(() => {
+        setCargando(false) // Cuando se cumplió con toda la carga de los datos la carga se termina
+      })
     }, [])
+
+    //Con este condicional cuando el fetch este solicitando mis datos al JSON aparecerá el mensaje de cargando
+    if (cargando){ // Si la variable es verdadera
+      return(// retorana un div con el mensaje
+        <div className="container mt-5">
+            <h2 className="text-center">Cargando productos...</h2>
+        </div>
+      )
+    }
 
     return productos.map((producto) => {//Con map recorro cada objeto dentro del array de mi variable productos(JSON)
       return (
