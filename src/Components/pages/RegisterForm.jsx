@@ -1,12 +1,16 @@
 import Navbar from "./Navbar"
 import {useForm} from 'react-hook-form'
+import { useRegistro } from "../../hooks/useRegistro";//Custom Hook
 
 const RegisterForm = () => {
+
+    const { registrar, verEnvio } = useRegistro();//Custom Hook
 
     const {register, handleSubmit, formState: {errors}, watch} = useForm();
 
     const enviado = handleSubmit((data) => {
         console.log(data)
+        verEnvio()
     })
 
     return (
@@ -97,8 +101,14 @@ const RegisterForm = () => {
                     </div>
                     
                     <button className="btn-enviar btn btn-primary w-100" type="submit">
-                        Enviar
+                        Registrar
                     </button>
+
+                    {registrar && (
+                        <div className="alert alert-success mt-2" role="alert">
+                            Registro exitoso ✅
+                        </div>
+                    )}
                 </form>
             </div>
         </div>
