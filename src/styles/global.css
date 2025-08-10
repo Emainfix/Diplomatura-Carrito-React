@@ -13,6 +13,16 @@ html, body{
     --color-gray: #f0f0f0;
 }
 
+.caja{
+    max-height: 1rem;
+    max-width: 1rem;
+}
+span{
+    display: block;
+    color: tomato;
+    font-size: small;
+}
+
 .blue-link {
   color: var(--color-primary) !important;
 }
